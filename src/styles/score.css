@@ -5,6 +5,8 @@
   background-color: var(--dark-bg);
   min-height: 100vh;
   flex: 1 1 30%;
+  gap: 30px;
+  padding: 20px;
 }
 .help-section {
   text-align: center;
@@ -19,6 +21,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  gap: 20px;
 }
 .money {
   display: flex;
