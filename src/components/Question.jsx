@@ -113,12 +113,12 @@ function Question({ qnNum, setQnNum, help, setHelp }) {
                       stopGame();
                       return;
                     }
-                    const correctAudio = new Audio(correctSound);
-                    correctAudio.play();
+                    // const correctAudio = new Audio(correctSound);
+                    // correctAudio.play();
                   } else {
                     // alert("wrong");
-                    const correctAudio = new Audio(wrongSound);
-                    correctAudio.play();
+                    // const correctAudio = new Audio(wrongSound);
+                    // correctAudio.play();
                     stopGame();
                   }
                 }}
