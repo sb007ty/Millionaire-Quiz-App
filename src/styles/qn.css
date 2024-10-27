@@ -1,7 +1,6 @@
 .qn-sec {
   flex: 1 1 60%;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -34,6 +33,7 @@
   /* background-color: var(--dark-bg); */
   /* border: var(--qn-ans-border); */
   padding: 20px;
+  width: 100%;
 }
 .qn {
   /* grid-row: 1/2; */
@@ -44,9 +44,16 @@
   border-radius: 5px;
   /* word-break: break-all; */
   overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .ans {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: var(--qn-ans-border);
   background-color: var(--dark-bg);
   text-align: center;
@@ -54,6 +61,7 @@
   cursor: pointer;
   overflow: auto;
   word-break: break-all;
+  padding: 20px;
 }
 .ans:hover {
   border: var(--qn-ans-border-hover);

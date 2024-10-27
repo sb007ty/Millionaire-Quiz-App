@@ -1,7 +1,7 @@
 .timer-sec {
   flex: 1 1 40%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 }
 .timer {
@@ -14,4 +14,5 @@
   align-items: center;
   font-size: 2rem;
   font-weight: 800;
+  background-color: var(--dark-bg);
 }
