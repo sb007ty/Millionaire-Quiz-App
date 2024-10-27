@@ -17,28 +17,27 @@ function Question({ qnNum, setQnNum, help, setHelp }) {
   const timerId = useRef();
 
   const [gameOver, setGameOver] = useState(false);
-
+  const askQn = async () => {
+    try {
+      const resp = await fetch(
+        "https://opentdb.com/api.php?amount=15&category=21&difficulty=easy&type=multiple"
+      );
+      console.log(resp.ok, "resss");
+      if (!resp.ok) throw new Error();
+      const qnData = await resp.json();
+      console.log(qnData.results);
+      setQnAnsRes(qnData.results);
+      setUpTimer();
+      const rand = getRandomNum();
+      setQnNum(0);
+      setRandomNum(rand);
+    } catch (e) {
+      alert("Api error- Refresh page");
+      console.log("error-loading qns");
+      //show modal with refresh button
+    }
+  };
   useEffect(() => {
-    const askQn = async () => {
-      try {
-        const resp = await fetch(
-          "https://opentdb.com/api.php?amount=15&category=21&difficulty=easy&type=multiple"
-        );
-        console.log(resp.ok, "resss");
-        if (!resp.ok) throw new Error();
-        const qnData = await resp.json();
-        console.log(qnData.results);
-        setQnAnsRes(qnData.results);
-        setUpTimer();
-        const rand = getRandomNum();
-        setQnNum(0);
-        setRandomNum(rand);
-      } catch (e) {
-        alert("Api error- Refresh page");
-        console.log("error-loading qns");
-        //show modal with refresh button
-      }
-    };
     askQn();
     return () => {
       // console.log("hellllll");
@@ -153,6 +152,7 @@ function Question({ qnNum, setQnNum, help, setHelp }) {
     clearInterval(timerId.current);
     setGameOver(false);
     setQnAnsRes([]);
+    askQn();
   }
   const obj = moneyPyramid[moneyPyramid.length - qnNum];
 
