@@ -9,6 +9,7 @@ import gameStartAudio from "../assets/sounds/src_sounds_play.mp3";
 function Game() {
   const [start, setStart] = useState(false);
   const [qnNum, setQnNum] = useState(0);
+  const [help, setHelp] = useState(false);
 
   useEffect(() => {
     console.log("hellooo");
@@ -36,9 +37,14 @@ function Game() {
     <div className="game-container">
       <div className="game-section">
         {/* <Timer /> */}
-        <Question qnNum={qnNum} setQnNum={setQnNum} />
+        <Question
+          qnNum={qnNum}
+          setQnNum={setQnNum}
+          help={help}
+          setHelp={setHelp}
+        />
       </div>
-      <Score qnNum={qnNum} setQnNum={setQnNum} />
+      <Score qnNum={qnNum} setQnNum={setQnNum} setHelp={setHelp} />
     </div>
   );
 }

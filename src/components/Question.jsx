@@ -3,7 +3,7 @@ import "../styles/qn.css";
 import "../styles/timer.css";
 import moneyPyramid from "../assets/data/moneyPyramid";
 
-function Question({ qnNum, setQnNum }) {
+function Question({ qnNum, setQnNum, help, setHelp }) {
   const [qns, setQns] = useState([]);
   const [qnAnsDetails, setQnAnsDetails] = useState({});
   const [time, setTime] = useState(10);
@@ -14,7 +14,7 @@ function Question({ qnNum, setQnNum }) {
   const askQn = async () => {
     try {
       const resp = await fetch(
-        "https://opentdb.com/api.php?amount=10&type=multiple"
+        "https://opentdb.com/api.php?amount=15&category=21&difficulty=easy&type=multiple"
       );
       console.log(resp.ok, "resss");
       if (!resp.ok) throw new Error();
@@ -81,35 +81,43 @@ function Question({ qnNum, setQnNum }) {
   const getQnAnsDisp = () => {
     if (!Object.keys(qnAnsDetails).length) return null;
     const { correctAnsPos, question, answers } = qnAnsDetails;
+    let fl = 0;
     return (
       <div className="qn-ans-container">
         <div className="qn">{question}</div>
         {answers.map((item, index) => {
-          return (
-            <div
-              key={item}
-              className="ans"
-              onClick={(e) => {
-                console.log(qnNum, "event");
-                if (index === correctAnsPos) {
-                  setTime(10);
-                  if (qnNum + 1 === qnAnsRef.length) {
-                    setQnNum(qnNum + 1);
-                    stopGame();
-                    return;
-                  }
-                  getQnAns(qnNum + 1);
+          if (!help) fl = 0;
+          if (fl === 0 || index === correctAnsPos) {
+            if (index !== correctAnsPos) fl = 1;
+            return (
+              <div
+                key={item}
+                className="ans"
+                onClick={(e) => {
+                  console.log(qnNum, "event");
+                  setHelp(false);
+                  if (index === correctAnsPos) {
+                    setTime(10);
+                    if (qnNum + 1 === qnAnsRef.length) {
+                      setQnNum(qnNum + 1);
+                      stopGame();
+                      return;
+                    }
+                    getQnAns(qnNum + 1);
 
-                  alert("Correct");
-                } else {
-                  alert("wrong");
-                  stopGame();
-                }
-              }}
-            >
-              {item}
-            </div>
-          );
+                    alert("Correct");
+                  } else {
+                    alert("wrong");
+                    stopGame();
+                  }
+                }}
+              >
+                {item}
+              </div>
+            );
+          } else {
+            return <div key={item} className="ans"></div>;
+          }
         })}
       </div>
     );
