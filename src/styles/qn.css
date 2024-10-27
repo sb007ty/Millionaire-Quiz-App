@@ -12,6 +12,15 @@
   justify-content: center;
   flex-direction: column;
   justify-content: space-evenly;
+  font-size: 2rem;
+  font-weight: 600;
+}
+.restart-btn {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 .amt-won {
   background-color: var(--dark-bg);

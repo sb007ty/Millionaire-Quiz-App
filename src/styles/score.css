@@ -23,6 +23,11 @@
   justify-content: space-evenly;
   gap: 20px;
 }
+@media screen and (max-width: 1400px) {
+  .money-section {
+    gap: 10px;
+  }
+}
 .money {
   display: flex;
   justify-content: space-evenly;
