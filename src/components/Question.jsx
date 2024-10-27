@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "../styles/qn.css";
 import "../styles/timer.css";
+import moneyPyramid from "../assets/data/moneyPyramid";
 
 function Question({ qnNum, setQnNum }) {
   const [qns, setQns] = useState([]);
@@ -15,13 +16,15 @@ function Question({ qnNum, setQnNum }) {
       const resp = await fetch(
         "https://opentdb.com/api.php?amount=10&type=multiple"
       );
+      console.log(resp.ok, "resss");
       if (!resp.ok) throw new Error();
       const qnData = await resp.json();
       console.log(qnData.results);
       qnAnsRef.current = qnData.results;
       // setQns(qnData.results);
       setUpTimer();
-      getQnAns();
+      console.log("object");
+      getQnAns(0);
     } catch (e) {
       alert("Api error- Refresh page");
       console.log("error-loading qns");
@@ -36,13 +39,8 @@ function Question({ qnNum, setQnNum }) {
     };
   }, []);
   useEffect(() => {
-    // console.log(time, qnNum, "qntime");
     if (time === 0) {
-      if (qnNum + 1 === qnAnsRef.current.length) {
-        stopGame();
-        return;
-      }
-      getQnAns();
+      stopGame();
     }
   }, [time]);
   const setUpTimer = () => {
@@ -55,11 +53,11 @@ function Question({ qnNum, setQnNum }) {
       });
     }, 1000);
   };
-  const getQnAns = () => {
+  const getQnAns = (qnNumber) => {
     const qnsList = qnAnsRef.current;
-    setQnNum(qnNum + 1);
+    setQnNum(qnNumber);
     const qnAns = qnsList.find((item, index) => {
-      return index === qnNum + 1;
+      return index === qnNumber;
     });
     // console.log(qns, " qnAn**");
 
@@ -95,10 +93,12 @@ function Question({ qnNum, setQnNum }) {
                 console.log(qnNum, "event");
                 if (index === correctAnsPos) {
                   setTime(10);
-                  // console.log(qnNum, "qnNum event");
-                  // setQnNum(qnNum + 1);
-                  // askQn(); Check this
-                  getQnAns();
+                  if (qnNum + 1 === qnAnsRef.length) {
+                    setQnNum(qnNum + 1);
+                    stopGame();
+                    return;
+                  }
+                  getQnAns(qnNum + 1);
 
                   alert("Correct");
                 } else {
@@ -121,7 +121,6 @@ function Question({ qnNum, setQnNum }) {
   function stopGame() {
     clearInterval(timerId.current);
     setGameOver(true);
-    setQnNum(-1);
     setTime(10);
   }
 
@@ -129,9 +128,9 @@ function Question({ qnNum, setQnNum }) {
     clearInterval(timerId.current);
     setGameOver(false);
     setQnAnsDetails([]);
-    setQnNum(-1);
     askQn();
   }
+  const obj = moneyPyramid[moneyPyramid.length - qnNum];
 
   return (
     <div className="game-section">
@@ -140,17 +139,15 @@ function Question({ qnNum, setQnNum }) {
       </div>
       {gameOver && (
         <div className="game-over">
-          <button onClick={restartGame}>Restart</button>
+          <div className="amt-won">
+            You won {qnNum === 0 ? "$ 0" : obj["amount"]}
+          </div>
+          <button onClick={restartGame} className="restart-btn">
+            Restart
+          </button>
         </div>
       )}
       {!gameOver && <div className="qn-sec">{dispQnAns}</div>}
-      <div
-        onClick={(e) => {
-          console.log(qnNum, "qnNum here");
-        }}
-      >
-        helooo
-      </div>
     </div>
   );
 }

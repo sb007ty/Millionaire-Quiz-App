@@ -8,7 +8,7 @@ import gameStartAudio from "../assets/sounds/src_sounds_play.mp3";
 
 function Game() {
   const [start, setStart] = useState(false);
-  const [qnNum, setQnNum] = useState(-1);
+  const [qnNum, setQnNum] = useState(0);
 
   useEffect(() => {
     console.log("hellooo");

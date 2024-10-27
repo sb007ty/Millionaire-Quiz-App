@@ -10,13 +10,15 @@
   flex-direction: column;
   gap: 20px;
 }
-.user-details input,
-button {
+.user-details input {
   /* border-radius: 5px; */
   text-align: center;
   height: 30px;
   width: 250px;
 }
 .user-details button {
+  text-align: center;
+  height: 30px;
+  width: 250px;
   cursor: pointer;
 }

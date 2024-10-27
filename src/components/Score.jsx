@@ -2,7 +2,6 @@ import moneyPyramid from "../assets/data/moneyPyramid";
 import "../styles/score.css";
 
 function Score({ qnNum, setQnNum }) {
-  console.log(qnNum, "score");
   return (
     <div className="score-section">
       <div className="help-section">help</div>

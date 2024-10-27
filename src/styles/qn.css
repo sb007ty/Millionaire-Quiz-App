@@ -10,8 +10,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
-
+.amt-won {
+  background-color: var(--dark-bg);
+  border: 1px solid red;
+  gap: 50px;
+}
 .qn-ans-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
