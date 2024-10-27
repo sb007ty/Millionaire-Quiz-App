@@ -1,0 +1,22 @@
+.user-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--dark-bg);
+}
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.user-details input,
+button {
+  /* border-radius: 5px; */
+  text-align: center;
+  height: 30px;
+  width: 250px;
+}
+.user-details button {
+  cursor: pointer;
+}

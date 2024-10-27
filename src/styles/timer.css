@@ -1,0 +1,16 @@
+.timer-sec {
+  flex: 1 1 40%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.timer {
+  height: 100px;
+  width: 100px;
+  border: 5px solid palevioletred;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}

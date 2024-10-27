@@ -1,0 +1,33 @@
+.score-section {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  background-color: var(--dark-bg);
+  min-height: 100vh;
+  flex: 1 1 30%;
+}
+.help-section {
+  text-align: center;
+}
+.money-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.money {
+  display: flex;
+  justify-content: space-evenly;
+}
+.money-level {
+  width: 20px;
+}
+.selected-level {
+  border: 1px solid green;
+  border-radius: 5px;
+}
+.money-amount {
+  width: 80px;
+  /* margin-left: auto; */
+}
+.score-section {
+}
