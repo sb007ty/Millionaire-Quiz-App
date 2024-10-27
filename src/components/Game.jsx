@@ -23,8 +23,8 @@ function Game() {
           <button
             onClick={(e) => {
               setStart(true);
-              const audioEl = new Audio(gameStartAudio);
-              audioEl.play();
+              // const audioEl = new Audio(gameStartAudio);
+              // audioEl.play();
             }}
           >
             Start
